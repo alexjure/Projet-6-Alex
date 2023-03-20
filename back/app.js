@@ -4,11 +4,9 @@ const mongoose = require('mongoose');
 const path = require('path');
 require('dotenv').config()
 
-console.log(process.env)
-
 const sauceRoutes = require('./routes/sauce');
 const userRoutes = require('./routes/user');
-// https://www.npmjs.com/package/dotenv
+
 mongoose.connect(process.env.MONGO_DB,
     { useNewUrlParser: true,
       useUnifiedTopology: true })
