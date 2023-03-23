@@ -5,6 +5,7 @@ const fs = require('fs');
 
 exports.createSauce = (req, res, next) =>{
     const sauceObject = JSON.parse(req.body.sauce);
+    console.log(req.body)
     delete sauceObject._id;
     delete sauceObject._userId;
     const sauce = new Sauce({
@@ -41,6 +42,8 @@ exports.modifySauce = (req, res, next) =>{
     });
 };
 
+// Suppression d'une sauce 
+
 exports.deleteSauce = (req, res, next) => {
     Sauce.findOne({_id: req.params.id})
         .then(sauce => {
@@ -71,6 +74,8 @@ exports.getAllSauces = (req, res, next) =>{
     .then(sauces => res.status(200).json(sauces))
     .catch(error => res.status(400).json({error}));
 }
+
+// Like/Dislike
 
 exports.likeSauce = (req, res, next) => {
        switch (req.body.like) {
